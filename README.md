@@ -4,10 +4,23 @@ A responsive, pixel-perfect frontend implementation of MakerGhat's "Our Story" p
 
 ---
 
-## 🔗 Submission Links
+## 🔗 Mandatory Submission
 
-- **Live Demo**: [Deploying to Vercel...]
-- **GitHub Repository**: [Repository URL]
+- **GitHub Repository**: [https://github.com/Gailanimesh/-Website-Recreation---makerghat.git](https://github.com/Gailanimesh/-Website-Recreation---makerghat.git)
+- **Live Demo**: [Deploy with Vercel via GitHub Import]
+
+---
+
+## 🤖 AI Tool Usage Acknowledgment
+
+This project was developed with assistance from Claude (Anthropic) and Cursor with the Figma MCP integration, used for:
+
+- **Architecture planning and debugging assistance** during implementation
+- **Code review and bug identification/fixes** during implementation
+- **Frontend recreation assistance** from the provided Figma design, using Cursor's Figma MCP tool integration
+- **Interview preparation and technical Q&A practice**
+
+All architectural decisions, debugging, and final implementation choices were reviewed and validated by me.
 
 ---
 
@@ -74,14 +87,21 @@ frontend_task/
 
 ---
 
-## 🚀 Running Locally
+## 🚀 Running Locally & Deploying to Vercel
 
-To run locally without a build step:
+### Local Development
 ```bash
 # Using Python built-in server
 python -m http.server 3000
 
-# Or using Node.js npx serve
+# Or using Node.js
 npx -y serve -p 3000 .
 ```
-Then visit `http://localhost:3000` in your web browser.
+Visit `http://localhost:3000` in your web browser.
+
+### Deploying to Vercel (Permanent Production)
+1. Push this repository to GitHub.
+2. Go to [https://vercel.com/new](https://vercel.com/new).
+3. Connect your GitHub account and click **Import** next to `-Website-Recreation---makerghat`.
+4. Click **Deploy** (no build settings or frameworks needed — Vercel detects static HTML/CSS/JS automatically).
+5. Vercel will instantly generate a permanent production URL (e.g. `https://website-recreation-makerghat.vercel.app`).
