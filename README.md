@@ -55,17 +55,15 @@ frontend_task/
      - Auto-rotating community photo slideshow with smooth cross-fades.
 
 3. **Multi-Device Responsive Architecture**:
-   - **Desktop (1100px+)**: Preserved 100% pixel-perfect desktop specification with proportional viewport scaling.
-   - **Tablet (768px – 1099px)**:
-     - Fluid layout with sticky header.
-     - Horizontally scrollable tab bar preserving signature rounded tab aesthetics and pastel colors without awkward line wrapping.
-     - Responsive auto-rotating Founders slideshow container.
-     - Vertical circuit line connecting narrative milestones.
-   - **Mobile (320px – 767px)**:
-     - Accessible mobile navigation drawer with hamburger toggle button (`.nav-toggle`).
-     - Interactive Year Cards: Tapping any year chip triggers an accessible bottom-sheet modal with blurred backdrop and close button (`×`).
-     - Responsive single-column footer layout with fluid newsletter input and social icons.
-     - Strict `overflow-x: hidden` to eliminate horizontal page jitter on all mobile screens.
+   - **Desktop (1200px+)**: Preserves 100% pixel-perfect desktop specification matching the Figma artboard with hover-activated milestone details and floating layout.
+   - **Tablet & Mobile (<= 1199px)**:
+     - **Connected Template Tabs**: Authentic overlapping folder tabs with smooth horizontal touch-scrolling, active tab blending seamlessly into the cream story panel.
+     - **Inline Year Milestone Cards**: Milestone bullet points render inline directly below each year chip and photo, allowing natural scrolling without modal interruptions.
+     - **Continuous Cream Canvas**: Story panel extends continuously across the narrative and roadmap, eliminating harsh white breaks.
+     - **Dashed Circuit Road**: Vertical green track featuring a center dashed line and circular connection nodes matching the desktop aesthetic.
+     - **Mobile Navigation Drawer**: Accessible navigation toggle (`.nav-toggle`) with dropdown accordion states.
+     - **Balanced Typography & Media**: Images and cards scale gracefully up to 720px on tablet screens while remaining 100% responsive down to 320px phones.
+     - **Strict Layout Hygiene**: Zero horizontal jitter or page overflow.
 
 4. **Production Asset Hygiene**:
    - Conducted an asset audit ensuring all 47 referenced production SVGs and images are present, verified, and load with HTTP 200 (zero 404s).
@@ -78,7 +76,7 @@ frontend_task/
 1. **Mobile / Tablet Viewport Adaptations**:
    - The Figma prototype focuses primarily on the 1440px desktop frame. For smaller viewports (Tablets and Smartphones), standard responsive UX patterns were adopted:
      - Converting the desktop 2D winding circuit track into a clean, legible vertical timeline on mobile while retaining the green circuit aesthetic and year milestones.
-     - Presenting the year milestone bullet points as accessible bottom-sheet modals on touch devices rather than hover-only popups.
+     - Presenting the year milestone bullet points inline directly below each milestone on touch devices for seamless, natural reading without modal interruptions.
 2. **Interactive Elements**:
    - Dropdown chevrons in the navigation bar were equipped with accessible toggle states (`aria-expanded`).
    - The Founders photo card in "How did MG start" cycles through community photos via a lightweight, non-blocking interval.
