@@ -40,9 +40,9 @@
     }
   });
 
-  // Year chips & cards: Inline under each milestone on mobile, hover popup on desktop
+  // Year chips & cards: Inline under each milestone on mobile/tablet, hover popup on desktop
   function syncYearCards() {
-    var isMobile = window.innerWidth <= 899;
+    var isMobileOrTablet = window.innerWidth <= 1199;
     document.querySelectorAll(".year").forEach(function (yearEl) {
       var chip = yearEl.querySelector(".year-chip");
       if (!chip) return;
@@ -50,7 +50,7 @@
       var card = id ? document.getElementById(id) : null;
       if (!card) return;
 
-      if (isMobile) {
+      if (isMobileOrTablet) {
         // Show inline directly inside the year item below photo
         card.hidden = false;
         if (card.parentElement !== yearEl) {
@@ -75,21 +75,21 @@
     var hideTimer;
 
     chip.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 899) {
+      if (window.innerWidth > 1199) {
         clearTimeout(hideTimer);
         card.hidden = false;
       }
     });
 
     card.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 899) {
+      if (window.innerWidth > 1199) {
         clearTimeout(hideTimer);
         card.hidden = false;
       }
     });
 
     function maybeHide(e) {
-      if (window.innerWidth > 899) {
+      if (window.innerWidth > 1199) {
         var related = e.relatedTarget;
         if (related === chip || chip.contains(related) || related === card || card.contains(related)) {
           return;
@@ -117,7 +117,7 @@
     }, 3500);
   }
 
-  // Section tabs interaction & smooth centering on mobile
+  // Section tabs interaction & smooth centering on mobile/tablet
   var sectionTabs = document.querySelectorAll(".section-tab");
   sectionTabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
@@ -127,7 +127,7 @@
       });
       tab.classList.add("is-active");
       tab.setAttribute("aria-selected", "true");
-      if (window.innerWidth <= 899) {
+      if (window.innerWidth <= 1199) {
         tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
       }
     });

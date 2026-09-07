@@ -1149,10 +1149,10 @@ button {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Mobile / Tablet Responsive Styles (<= 899px)                              */
-/* Preserves 100% of scaled desktop layout at 900px+ (including Desktop Site)*/
+/* Mobile / Tablet Responsive Styles (<= 1199px)                             */
+/* Preserves 100% desktop layout for full desktops at 1200px+                */
 /* -------------------------------------------------------------------------- */
-@media (max-width: 899px) {
+@media (max-width: 1199px) {
   .artboard {
     width: 100%;
     max-width: 100%;
@@ -1452,7 +1452,7 @@ button {
     margin: 18px auto !important;
     text-align: center !important;
     width: calc(100% - 28px) !important;
-    max-width: 480px !important;
+    max-width: 720px !important;
   }
 
   .photo-tower img,
@@ -1594,7 +1594,7 @@ button {
     top: auto !important;
     transform: none !important;
     width: 100% !important;
-    max-width: 480px !important;
+    max-width: 720px !important;
     margin: 8px 0 16px !important;
     padding: 16px 20px !important;
     border-radius: 16px !important;
