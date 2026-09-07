@@ -117,4 +117,20 @@
     }, 3500);
   }
 
+  // Section tabs interaction & smooth centering on mobile
+  var sectionTabs = document.querySelectorAll(".section-tab");
+  sectionTabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      sectionTabs.forEach(function (t) {
+        t.classList.remove("is-active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+      if (window.innerWidth <= 899) {
+        tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    });
+  });
+
 })();
