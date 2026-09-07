@@ -40,61 +40,56 @@
     }
   });
 
-  // Backdrop element for mobile/tablet year card modal
-  var backdrop = document.createElement("div");
-  backdrop.className = "year-card-backdrop";
-  backdrop.hidden = true;
-  document.body.appendChild(backdrop);
+  // Year chips & cards: Inline under each milestone on mobile, hover popup on desktop
+  function syncYearCards() {
+    var isMobile = window.innerWidth <= 899;
+    document.querySelectorAll(".year").forEach(function (yearEl) {
+      var chip = yearEl.querySelector(".year-chip");
+      if (!chip) return;
+      var id = chip.getAttribute("data-dialog");
+      var card = id ? document.getElementById(id) : null;
+      if (!card) return;
 
-  function closeAllCards() {
-    document.querySelectorAll(".year-card").forEach(function (c) {
-      c.hidden = true;
+      if (isMobile) {
+        // Show inline directly inside the year item below photo
+        card.hidden = false;
+        if (card.parentElement !== yearEl) {
+          yearEl.appendChild(card);
+        }
+      } else {
+        // Return to body for desktop absolute positioning & hover interaction
+        card.hidden = true;
+        if (card.parentElement !== document.body) {
+          document.body.appendChild(card);
+        }
+      }
     });
-    backdrop.hidden = true;
   }
 
-  backdrop.addEventListener("click", closeAllCards);
-
-  // Year chips — show inline card on hover for desktop, toggle modal on touch/click for mobile/tablet
+  // Desktop hover interactions
   document.querySelectorAll(".year-chip").forEach(function (chip) {
     var id = chip.getAttribute("data-dialog");
     var card = id ? document.getElementById(id) : null;
     if (!card) return;
 
-    // Add close button to mobile cards if not present
-    if (!card.querySelector(".year-card-close")) {
-      var closeBtn = document.createElement("button");
-      closeBtn.type = "button";
-      closeBtn.className = "year-card-close";
-      closeBtn.setAttribute("aria-label", "Close");
-      closeBtn.innerHTML = "&times;";
-      closeBtn.style.cssText = "position:absolute;top:10px;right:14px;background:none;border:none;font-size:24px;line-height:1;color:#362c5f;cursor:pointer;padding:4px 8px;";
-      closeBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        closeAllCards();
-      });
-      card.appendChild(closeBtn);
-    }
-
     var hideTimer;
 
-    // Desktop hover
     chip.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 1099) {
+      if (window.innerWidth > 899) {
         clearTimeout(hideTimer);
         card.hidden = false;
       }
     });
 
     card.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 1099) {
+      if (window.innerWidth > 899) {
         clearTimeout(hideTimer);
         card.hidden = false;
       }
     });
 
     function maybeHide(e) {
-      if (window.innerWidth > 1099) {
+      if (window.innerWidth > 899) {
         var related = e.relatedTarget;
         if (related === chip || chip.contains(related) || related === card || card.contains(related)) {
           return;
@@ -106,28 +101,10 @@
     }
     chip.addEventListener("mouseleave", maybeHide);
     card.addEventListener("mouseleave", maybeHide);
-
-    // Mobile / touch click toggle
-    chip.addEventListener("click", function (e) {
-      e.stopPropagation();
-      if (window.innerWidth <= 1099) {
-        if (card.hidden) {
-          closeAllCards();
-          card.hidden = false;
-          backdrop.hidden = false;
-        } else {
-          closeAllCards();
-        }
-      }
-    });
   });
 
-  // Global escape key to close modals
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") {
-      closeAllCards();
-    }
-  });
+  window.addEventListener("resize", syncYearCards);
+  syncYearCards();
 
   // Dynamic slideshow for "How did MG start" founders card
   var founderSlides = document.querySelectorAll(".photo-founders .founder-slide");

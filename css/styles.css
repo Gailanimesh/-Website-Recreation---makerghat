@@ -1149,10 +1149,10 @@ button {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Mobile / tablet — interpretation (no mobile Figma frame in the file)        */
-/* Breakpoint: 1099px. The 1440 zigzag + 1227px path cannot fit below that.   */
+/* Mobile / Tablet Responsive Styles (<= 899px)                              */
+/* Preserves 100% of scaled desktop layout at 900px+ (including Desktop Site)*/
 /* -------------------------------------------------------------------------- */
-@media (max-width: 1099px) {
+@media (max-width: 899px) {
   .artboard {
     width: 100%;
     max-width: 100%;
@@ -1253,22 +1253,20 @@ button {
     padding-bottom: 30px;
   }
 
-  /* Category tabs: horizontal scroll on clean white bar */
+  /* Category tabs: 2x2 grid on mobile so NO tab is clipped */
   .section-tabs {
     position: relative;
     left: auto;
     top: auto;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: 6px;
-    padding: 14px 16px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 12px 14px;
     margin: 0;
     width: 100%;
     background: var(--white);
     border-bottom: 2px solid var(--cream);
+    box-sizing: border-box;
   }
 
   .section-tabs::-webkit-scrollbar {
@@ -1284,16 +1282,26 @@ button {
   .section-tab.tab-team,
   .section-tab.tab-support,
   .section-tab.tab-alumni {
-    flex: 0 0 auto;
-    width: auto;
+    width: 100%;
     min-width: 0;
     height: 44px;
     min-height: 44px;
-    padding: 10px 18px;
-    font-size: 14px;
-    line-height: 20px;
-    border-radius: 14px 14px 0 0;
-    white-space: nowrap;
+    padding: 6px 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 18px;
+    border-radius: 12px;
+    white-space: normal;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .section-tab.tab-story.is-active {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    border: 2px solid var(--gold);
   }
 
   .story-panel {
@@ -1319,9 +1327,9 @@ button {
     left: auto;
     top: auto;
     width: auto;
-    padding: 20px 20px 12px;
-    font-size: 32px;
-    line-height: 40px;
+    padding: 18px 18px 12px;
+    font-size: 28px;
+    line-height: 36px;
   }
 
   .hero-media,
@@ -1329,14 +1337,14 @@ button {
     position: relative !important;
     left: auto !important;
     top: auto !important;
-    width: calc(100% - 32px);
+    width: calc(100% - 28px);
     height: auto;
     margin: 0 auto;
     border-radius: 16px;
   }
 
   .hero-media img {
-    height: 280px;
+    height: 240px;
     object-fit: cover;
   }
 
@@ -1378,16 +1386,16 @@ button {
     top: auto !important;
     width: auto !important;
     max-width: 100% !important;
-    margin: 20px 16px 12px;
-    padding: 0 4px;
+    margin: 22px 18px 12px;
+    padding: 0;
     background: transparent;
     z-index: 3;
   }
 
   .copy-block h2 {
-    font-size: 28px;
-    line-height: 36px;
-    margin: 0 0 10px;
+    font-size: 26px;
+    line-height: 34px;
+    margin: 0 0 8px;
   }
 
   .copy-block p {
@@ -1397,27 +1405,29 @@ button {
     color: var(--purple-deep);
   }
 
-  /* Photos in narrative */
+  /* Photos in narrative: Centered and never stretched */
   .photo-tower,
-  .photo-tn {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    width: calc(100% - 32px) !important;
-    height: auto !important;
-    max-width: 500px;
-    margin: 16px auto !important;
-    text-align: center;
+  .photo-tn,
+  .photo-founders {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 18px auto !important;
+    text-align: center !important;
+    width: calc(100% - 28px) !important;
+    max-width: 480px !important;
   }
 
   .photo-tower img,
   .photo-tn img {
-    width: 100%;
-    height: auto;
-    max-height: 280px;
-    object-fit: contain;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 260px !important;
+    object-fit: contain !important;
     border-radius: 16px;
-    margin: 0 auto;
+    margin: 0 auto !important;
+    display: block !important;
   }
 
   /* Founders cross-fading slideshow container */
@@ -1425,11 +1435,8 @@ button {
     position: relative !important;
     left: auto !important;
     top: auto !important;
-    width: calc(100% - 32px) !important;
-    max-width: 500px;
-    height: 280px !important;
-    margin: 20px auto !important;
-    border-radius: 18px;
+    height: 240px !important;
+    border-radius: 16px;
     overflow: hidden;
     display: block !important;
   }
@@ -1442,19 +1449,51 @@ button {
     object-fit: cover !important;
   }
 
-  /* Timeline */
+  /* Timeline with authentic dashed green circuit road */
   .journey {
     position: relative;
     padding: 16px 16px 40px;
   }
 
   .timeline {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    border-left: 4px solid var(--green);
-    margin-left: 16px;
-    padding-left: 20px;
+    gap: 32px;
+    margin-left: 18px;
+    padding-left: 24px;
+    border-left: none;
+  }
+
+  /* Solid green track */
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 24px;
+    width: 6px;
+    background: var(--green);
+    border-radius: 3px;
+  }
+
+  /* Centered white dashed line replicating desktop circuit road */
+  .timeline::after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 8px;
+    bottom: 24px;
+    width: 2px;
+    background: repeating-linear-gradient(
+      to bottom,
+      #ffffff 0,
+      #ffffff 6px,
+      transparent 6px,
+      transparent 12px
+    );
+    border-radius: 1px;
+    opacity: 0.95;
   }
 
   .year {
@@ -1466,104 +1505,103 @@ button {
 
   .year-chip {
     align-self: flex-start;
-    font-size: 24px;
-    line-height: 32px;
-    padding: 8px 16px;
+    font-size: 22px;
+    line-height: 30px;
+    padding: 6px 16px;
     border-radius: 12px;
     background: var(--chip);
     color: var(--purple-deep);
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.15s ease;
+    cursor: default;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   }
 
+  /* Circuit connection node on the road */
   .year-chip::before {
     content: "";
     position: absolute;
-    left: -28px;
+    left: -29px;
     top: 50%;
     transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: var(--green);
-    border: 2px solid var(--cream);
-    box-shadow: 0 0 0 2px var(--green);
-  }
-
-  .year-chip:active {
-    transform: scale(0.97);
+    background: var(--cream);
+    border: 3px solid var(--green);
+    box-shadow: 0 0 0 2px rgba(88, 173, 111, 0.35);
+    z-index: 2;
   }
 
   .photo {
-    width: calc(100% - 16px) !important;
-    max-width: 440px;
+    width: auto !important;
+    max-width: 100% !important;
     height: auto !important;
-    margin: 8px 0;
-    border-radius: 14px;
+    margin: 6px 0;
+    display: block !important;
   }
 
   .photo img {
-    height: auto;
-    max-height: 220px;
-    object-fit: contain;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 230px !important;
+    object-fit: contain !important;
+    border-radius: 14px;
+    display: block !important;
   }
 
-  .path-end-dot {
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-left: -32px;
-  }
-
-  /* Responsive Year Cards on Mobile & Tablet: bottom-sheet modal */
+  /* Inline Year Description Cards: Visible directly below year & photo without clicking */
   .year-card {
-    position: fixed !important;
-    bottom: 20px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    position: relative !important;
+    display: block !important;
+    left: auto !important;
     top: auto !important;
-    width: calc(100% - 32px) !important;
-    max-width: 520px !important;
-    z-index: 1000 !important;
-    margin: 0 !important;
-    padding: 24px 24px 20px !important;
-    border-radius: 20px !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 8px 0 16px !important;
+    padding: 16px 20px !important;
+    border-radius: 16px !important;
     background: var(--gold-card) !important;
-    box-shadow: 0 12px 40px rgba(54, 44, 95, 0.35) !important;
-    animation: sheetSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 4px 14px rgba(54, 44, 95, 0.08) !important;
+    box-sizing: border-box !important;
+    animation: none !important;
   }
 
   .year-card::before {
     display: none !important;
   }
 
-  @keyframes sheetSlideUp {
-    from { opacity: 0; transform: translate(-50%, 20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+  .year-card .year-card-close {
+    display: none !important;
   }
 
   .year-card-list {
-    gap: 10px;
+    margin: 0 !important;
+    padding-left: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
   }
 
   .year-card-list li {
-    font-size: 15px;
-    line-height: 22px;
+    font-size: 15px !important;
+    line-height: 22px !important;
+    color: var(--purple-deep) !important;
   }
 
-  /* Year card backdrop */
+  .path-end-dot {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: -31px;
+    background: var(--green);
+    border-radius: 50%;
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--green);
+  }
+
   .year-card-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(54, 44, 95, 0.45);
-    z-index: 999;
-    backdrop-filter: blur(2px);
-    animation: fadeIn 0.2s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    display: none !important;
   }
 
   /* Footer Reset & Polishing */
@@ -1664,37 +1702,5 @@ button {
     text-align: left !important;
     font-size: 14px;
     line-height: 20px;
-  }
-}
-
-/* Tablet footer 2-col layout */
-@media (min-width: 641px) and (max-width: 1099px) {
-  .footer-inner {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 36px !important;
-    max-width: 800px;
-  }
-}
-
-/* Compact phones */
-@media (max-width: 640px) {
-  .hero-media img {
-    height: 200px;
-  }
-
-  .photo-founders {
-    height: 220px !important;
-  }
-
-  .hero-title {
-    font-size: 26px;
-    line-height: 34px;
-    padding: 16px 16px 8px;
-  }
-
-  .copy-block h2 {
-    font-size: 24px;
-    line-height: 30px;
   }
 }
