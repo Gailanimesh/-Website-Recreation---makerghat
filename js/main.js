@@ -67,21 +67,31 @@
     });
   }
 
+  var activeCard = null;
+
   // Desktop / Tablet click & hover interactions
   document.querySelectorAll(".year-chip").forEach(function (chip) {
     var id = chip.getAttribute("data-dialog");
     var card = id ? document.getElementById(id) : null;
     if (!card) return;
 
-    // Toggle on click / tap (works on touchscreen tablets and mobile desktop-site)
+    var hideTimer;
+
+    // Toggle on click / tap (works on touchscreen tablets and mobile desktop-site on 1 single click)
     chip.addEventListener("click", function (e) {
       e.stopPropagation();
       if (window.innerWidth > 767) {
-        var willOpen = card.hidden;
-        document.querySelectorAll(".year-card").forEach(function (other) {
-          if (other !== card) other.hidden = true;
-        });
-        card.hidden = !willOpen;
+        clearTimeout(hideTimer);
+        if (activeCard === card) {
+          card.hidden = true;
+          activeCard = null;
+        } else {
+          document.querySelectorAll(".year-card").forEach(function (other) {
+            if (other !== card) other.hidden = true;
+          });
+          card.hidden = false;
+          activeCard = card;
+        }
       }
     });
 
@@ -89,33 +99,38 @@
       e.stopPropagation();
     });
 
-    var hideTimer;
-
     chip.addEventListener("mouseenter", function () {
       if (window.innerWidth > 767) {
         clearTimeout(hideTimer);
-        document.querySelectorAll(".year-card").forEach(function (other) {
-          if (other !== card) other.hidden = true;
-        });
-        card.hidden = false;
+        if (!activeCard) {
+          document.querySelectorAll(".year-card").forEach(function (other) {
+            if (other !== card) other.hidden = true;
+          });
+          card.hidden = false;
+        }
       }
     });
 
     card.addEventListener("mouseenter", function () {
       if (window.innerWidth > 767) {
         clearTimeout(hideTimer);
-        card.hidden = false;
+        if (!activeCard) {
+          card.hidden = false;
+        }
       }
     });
 
     function maybeHide(e) {
       if (window.innerWidth > 767) {
+        if (activeCard === card) return;
         var related = e.relatedTarget;
         if (related === chip || chip.contains(related) || related === card || card.contains(related)) {
           return;
         }
         hideTimer = setTimeout(function () {
-          card.hidden = true;
+          if (activeCard !== card) {
+            card.hidden = true;
+          }
         }, 180);
       }
     }
@@ -126,6 +141,7 @@
   // Close open year cards on outside click or Escape key
   document.addEventListener("click", function () {
     if (window.innerWidth > 767) {
+      activeCard = null;
       document.querySelectorAll(".year-card").forEach(function (c) {
         c.hidden = true;
       });
@@ -134,6 +150,7 @@
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape" && window.innerWidth > 767) {
+      activeCard = null;
       document.querySelectorAll(".year-card").forEach(function (c) {
         c.hidden = true;
       });
