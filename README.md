@@ -55,14 +55,15 @@ frontend_task/
      - Auto-rotating community photo slideshow with smooth cross-fades.
 
 3. **Multi-Device Responsive Architecture**:
-   - **Desktop (1200px+)**: Preserves 100% pixel-perfect desktop specification matching the Figma artboard with hover-activated milestone details and floating layout.
-   - **Tablet & Mobile (<= 1199px)**:
+   - **Desktop, Tablets & "Desktop Site" Mode (768px – 1440px+)**:
+     - Automatically renders the authentic desktop template scaled down smoothly (`zoom: calc(100vw / 1440px)`) to fit tablets (768px iPad, 820px iPad Air, 1024px iPad Pro) and whenever "Desktop site" mode (980px) is toggled on mobile browsers.
+     - Preserves full navigation bar, winding green circuit road, interactive hover milestone details, and 4-column footer ending flush without empty gaps or horizontal clipping.
+   - **Mobile Phones (<= 767px)**:
      - **Connected Template Tabs**: Authentic overlapping folder tabs with smooth horizontal touch-scrolling, active tab blending seamlessly into the cream story panel.
      - **Inline Year Milestone Cards**: Milestone bullet points render inline directly below each year chip and photo, allowing natural scrolling without modal interruptions.
      - **Continuous Cream Canvas**: Story panel extends continuously across the narrative and roadmap, eliminating harsh white breaks.
      - **Dashed Circuit Road**: Vertical green track featuring a center dashed line and circular connection nodes matching the desktop aesthetic.
      - **Mobile Navigation Drawer**: Accessible navigation toggle (`.nav-toggle`) with dropdown accordion states.
-     - **Balanced Typography & Media**: Images and cards scale gracefully up to 720px on tablet screens while remaining 100% responsive down to 320px phones.
      - **Strict Layout Hygiene**: Zero horizontal jitter or page overflow.
 
 4. **Production Asset Hygiene**:

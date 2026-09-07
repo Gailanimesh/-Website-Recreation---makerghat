@@ -65,11 +65,10 @@ button {
   background: var(--white);
 }
 
-@media (max-width: 1440px) {
+@media (min-width: 768px) and (max-width: 1440px) {
   .artboard {
-    transform-origin: top center;
-    transform: scale(calc(100vw / 1440));
-    margin-bottom: calc(var(--artboard-h) * (calc(100vw / 1440) - 1));
+    zoom: calc(100vw / 1440px);
+    margin: 0 auto;
   }
 }
 
@@ -1149,10 +1148,10 @@ button {
 }
 
 /* -------------------------------------------------------------------------- */
-/* Mobile / Tablet Responsive Styles (<= 1199px)                             */
-/* Preserves 100% desktop layout for full desktops at 1200px+                */
+/* Mobile Responsive Styles (<= 767px)                                        */
+/* Tablets (768px+) & "Desktop Site" (980px+) use scaled desktop template     */
 /* -------------------------------------------------------------------------- */
-@media (max-width: 1199px) {
+@media (max-width: 767px) {
   .artboard {
     width: 100%;
     max-width: 100%;

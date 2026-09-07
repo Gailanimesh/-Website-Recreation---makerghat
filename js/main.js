@@ -40,9 +40,9 @@
     }
   });
 
-  // Year chips & cards: Inline under each milestone on mobile/tablet, hover popup on desktop
+  // Year chips & cards: Inline under each milestone on mobile, hover popup on tablet/desktop
   function syncYearCards() {
-    var isMobileOrTablet = window.innerWidth <= 1199;
+    var isMobile = window.innerWidth <= 767;
     document.querySelectorAll(".year").forEach(function (yearEl) {
       var chip = yearEl.querySelector(".year-chip");
       if (!chip) return;
@@ -50,7 +50,7 @@
       var card = id ? document.getElementById(id) : null;
       if (!card) return;
 
-      if (isMobileOrTablet) {
+      if (isMobile) {
         // Show inline directly inside the year item below photo
         card.hidden = false;
         if (card.parentElement !== yearEl) {
@@ -66,7 +66,7 @@
     });
   }
 
-  // Desktop hover interactions
+  // Desktop / Tablet hover interactions
   document.querySelectorAll(".year-chip").forEach(function (chip) {
     var id = chip.getAttribute("data-dialog");
     var card = id ? document.getElementById(id) : null;
@@ -75,21 +75,21 @@
     var hideTimer;
 
     chip.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 1199) {
+      if (window.innerWidth > 767) {
         clearTimeout(hideTimer);
         card.hidden = false;
       }
     });
 
     card.addEventListener("mouseenter", function () {
-      if (window.innerWidth > 1199) {
+      if (window.innerWidth > 767) {
         clearTimeout(hideTimer);
         card.hidden = false;
       }
     });
 
     function maybeHide(e) {
-      if (window.innerWidth > 1199) {
+      if (window.innerWidth > 767) {
         var related = e.relatedTarget;
         if (related === chip || chip.contains(related) || related === card || card.contains(related)) {
           return;
@@ -117,7 +117,7 @@
     }, 3500);
   }
 
-  // Section tabs interaction & smooth centering on mobile/tablet
+  // Section tabs interaction & smooth centering on mobile
   var sectionTabs = document.querySelectorAll(".section-tab");
   sectionTabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
@@ -127,7 +127,7 @@
       });
       tab.classList.add("is-active");
       tab.setAttribute("aria-selected", "true");
-      if (window.innerWidth <= 1199) {
+      if (window.innerWidth <= 767) {
         tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
       }
     });
