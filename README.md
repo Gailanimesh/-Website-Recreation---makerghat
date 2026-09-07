@@ -7,7 +7,7 @@ A responsive, pixel-perfect frontend implementation of MakerGhat's "Our Story" p
 ## 🔗 Mandatory Submission
 
 - **GitHub Repository**: [https://github.com/Gailanimesh/-Website-Recreation---makerghat.git](https://github.com/Gailanimesh/-Website-Recreation---makerghat.git)
-- **Live Demo**: [Deploy with Vercel via GitHub Import]
+- **Live Demo**: [https://website-recreation-makerghat.vercel.app/](https://website-recreation-makerghat.vercel.app/)
 
 ---
 
