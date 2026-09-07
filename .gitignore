@@ -1,0 +1,9 @@
+# IDE and Agent configuration
+.agents/
+.cursor/
+.vercel/
+
+# Temporary / Scratch files
+scratch/
+_verify/
+*.log

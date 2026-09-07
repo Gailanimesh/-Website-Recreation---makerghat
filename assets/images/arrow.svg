@@ -1,0 +1,25 @@
+<svg width="113" height="51" viewBox="0 0 113 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clipPath id="clip0_7271_17079">
+<rect width="112.82" height="50.66" fill="white" transform="scale(1.00159)"/>
+</clipPath>
+</defs>
+<style>
+  @keyframes pulse-tail {
+    0%, 28% { fill: #D56B4E; }
+    33.3%, 95% { fill: #F1866A; }
+    100% { fill: #D56B4E; }
+  }
+  @keyframes pulse-head {
+    0%, 28% { fill: #F1866A; }
+    33.3%, 61.3% { fill: #D56B4E; }
+    66.6%, 100% { fill: #F1866A; }
+  }
+  .arrow-tail { animation: pulse-tail 1.5s infinite; }
+  .arrow-head { animation: pulse-head 1.5s infinite; }
+</style>
+<g clip-path="url(#clip0_7271_17079)">
+<path class="arrow-head" d="M70.6824 25.3703L42.3173 0V50.7407L70.6824 25.3703Z" fill="#F1866A"/>
+<path class="arrow-tail" d="M28.3751 25.3703L0 0V50.7407L28.3751 25.3703Z" fill="#D56B4E"/>
+</g>
+</svg>
