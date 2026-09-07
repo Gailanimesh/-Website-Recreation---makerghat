@@ -1161,6 +1161,7 @@ button {
     transform: none;
     margin-bottom: 0;
     overflow-x: hidden;
+    background: var(--cream);
   }
 
   .site-header {
@@ -1244,7 +1245,15 @@ button {
     transform: none;
   }
 
-  /* Category tabs: horizontal scroll on mobile/tablet */
+  /* Story Container: continuous warm cream background */
+  #main {
+    position: relative;
+    background: var(--cream);
+    width: 100%;
+    padding-bottom: 30px;
+  }
+
+  /* Category tabs: horizontal scroll on clean white bar */
   .section-tabs {
     position: relative;
     left: auto;
@@ -1256,8 +1265,10 @@ button {
     scrollbar-width: none;
     gap: 6px;
     padding: 14px 16px 0;
-    margin: 0 auto;
-    max-width: 1000px;
+    margin: 0;
+    width: 100%;
+    background: var(--white);
+    border-bottom: 2px solid var(--cream);
   }
 
   .section-tabs::-webkit-scrollbar {
@@ -1289,14 +1300,14 @@ button {
     position: relative;
     left: auto;
     top: auto;
-    width: calc(100% - 32px);
-    max-width: 1000px;
+    width: 100%;
     height: auto;
-    margin: 0 auto 32px;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
-    border-radius: 0 16px 16px 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    background: var(--cream);
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
   }
 
   .hero-illustration {
@@ -1308,7 +1319,7 @@ button {
     left: auto;
     top: auto;
     width: auto;
-    padding: 16px 20px 12px;
+    padding: 20px 20px 12px;
     font-size: 32px;
     line-height: 40px;
   }
@@ -1325,7 +1336,7 @@ button {
   }
 
   .hero-media img {
-    height: 300px;
+    height: 280px;
     object-fit: cover;
   }
 
@@ -1359,6 +1370,7 @@ button {
   }
 
   .copy-block,
+  .copy-mission,
   .copy-why,
   .copy-start {
     position: relative !important;
@@ -1366,8 +1378,8 @@ button {
     top: auto !important;
     width: auto !important;
     max-width: 100% !important;
-    margin: 16px;
-    padding: 20px;
+    margin: 20px 16px 12px;
+    padding: 0 4px;
     background: transparent;
     z-index: 3;
   }
@@ -1380,8 +1392,9 @@ button {
 
   .copy-block p {
     font-size: 16px;
-    line-height: 24px;
-    margin-top: 8px;
+    line-height: 25px;
+    margin: 0;
+    color: var(--purple-deep);
   }
 
   /* Photos in narrative */
@@ -1392,17 +1405,19 @@ button {
     top: auto !important;
     width: calc(100% - 32px) !important;
     height: auto !important;
-    max-width: 600px;
+    max-width: 500px;
     margin: 16px auto !important;
+    text-align: center;
   }
 
   .photo-tower img,
   .photo-tn img {
     width: 100%;
     height: auto;
-    max-height: 300px;
+    max-height: 280px;
     object-fit: contain;
     border-radius: 16px;
+    margin: 0 auto;
   }
 
   /* Founders cross-fading slideshow container */
@@ -1411,8 +1426,8 @@ button {
     left: auto !important;
     top: auto !important;
     width: calc(100% - 32px) !important;
-    max-width: 600px;
-    height: 300px !important;
+    max-width: 500px;
+    height: 280px !important;
     margin: 20px auto !important;
     border-radius: 18px;
     overflow: hidden;
@@ -1430,13 +1445,13 @@ button {
   /* Timeline */
   .journey {
     position: relative;
-    padding: 12px 16px 48px;
+    padding: 16px 16px 40px;
   }
 
   .timeline {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
     border-left: 4px solid var(--green);
     margin-left: 16px;
     padding-left: 20px;
@@ -1455,6 +1470,8 @@ button {
     line-height: 32px;
     padding: 8px 16px;
     border-radius: 12px;
+    background: var(--chip);
+    color: var(--purple-deep);
     cursor: pointer;
     transition: transform 0.15s ease, background 0.15s ease;
   }
@@ -1549,14 +1566,14 @@ button {
     to { opacity: 1; }
   }
 
-  /* Footer */
+  /* Footer Reset & Polishing */
   .site-footer {
     position: relative;
     left: auto;
     top: auto;
     width: 100%;
     min-height: 0;
-    margin-top: 40px;
+    margin-top: 0;
     background: var(--purple);
     overflow: hidden;
   }
@@ -1566,46 +1583,97 @@ button {
     left: 0;
     width: 100%;
     height: auto;
+    display: block;
     object-fit: cover;
   }
 
   .footer-inner {
     margin-top: 0;
-    padding: 36px 24px 44px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .footer-logo,
-  .subscribe-btn,
-  .socials,
-  .license {
-    margin-left: 0;
-    text-align: left;
-    justify-content: flex-start;
-  }
-
-  .footer-subscribe form {
+    padding: 36px 20px 48px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
-  .subscribe-input {
-    flex: 1 1 200px;
-    min-width: 0;
-  }
-
-  .subscribe-btn {
-    flex: 0 0 auto;
+  .footer-col,
+  .footer-connect,
+  .footer-resources,
+  .footer-faqs,
+  .footer-subscribe {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
   }
 
   .footer-connect h2 {
-    font-size: 36px;
-    line-height: 44px;
+    font-size: 34px;
+    line-height: 42px;
+    margin: 0 0 16px 0 !important;
+  }
+
+  .footer-about {
+    margin: 0 0 20px 0 !important;
+  }
+
+  .contact-row {
+    margin: 0 0 12px 0 !important;
+  }
+
+  .footer-col h3 {
+    margin: 0 0 14px 0 !important;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .footer-logo {
+    margin: 0 0 20px 0 !important;
+    width: 150px;
+    height: auto;
+    display: block;
+  }
+
+  .subscribe-btn {
+    width: 100% !important;
+    max-width: 280px;
+    margin: 0 0 16px 0 !important;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .footer-divider {
+    width: 100% !important;
+    max-width: 280px;
+    margin: 0 0 20px 0 !important;
+  }
+
+  .socials {
+    width: auto !important;
+    max-width: 280px;
+    margin: 0 0 24px 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .license {
+    margin: 0 !important;
+    text-align: left !important;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* Tablet footer 2-col layout */
+@media (min-width: 641px) and (max-width: 1099px) {
+  .footer-inner {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 36px !important;
+    max-width: 800px;
   }
 }
 
@@ -1622,37 +1690,11 @@ button {
   .hero-title {
     font-size: 26px;
     line-height: 34px;
-    padding: 14px 16px 8px;
-  }
-
-  .copy-block {
-    margin: 12px 10px;
-    padding: 16px;
+    padding: 16px 16px 8px;
   }
 
   .copy-block h2 {
     font-size: 24px;
     line-height: 30px;
-  }
-
-  .footer-inner {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 24px 16px 36px;
-  }
-
-  .footer-subscribe form {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .subscribe-input {
-    width: 100% !important;
-  }
-
-  .subscribe-btn {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
   }
 }
